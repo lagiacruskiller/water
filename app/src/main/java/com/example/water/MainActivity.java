@@ -4,6 +4,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import android.os.Bundle;
 public class MainActivity extends AppCompatActivity {
     private EditText month, next;
     private Button cal;
+    double finalpayment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,11 +27,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v){
                 int payment;
-                double finalpayment;
                 if(TextUtils.isEmpty(month.getText())){
                     if(TextUtils.isEmpty(next.getText())){
                         new AlertDialog.Builder(MainActivity.this)
-                                .setTitle("Water")
+                                .setTitle("Warning")
                                 .setMessage("Both boxes cannot be empty")
                                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                     @Override
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
                         else if(payment > 60) finalpayment = payment*11.55-168;
                         else if(payment > 20) finalpayment = payment*9.45-42;
                         else finalpayment = payment*7.35;
-                        new AlertDialog.Builder(MainActivity.this)
+                        /*new AlertDialog.Builder(MainActivity.this)
                                 .setTitle("Water")
                                 .setMessage("Final payment: " +finalpayment)
                                 .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -57,6 +58,10 @@ public class MainActivity extends AppCompatActivity {
                                     }
                                 })
                                 .show();
+                        */
+                        Intent result = new Intent(MainActivity.this, ResultActivity.class);
+                        result.putExtra("Final Payment", finalpayment);
+                        startActivity(result);
                     }
                 }
                 else{
@@ -65,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
                     else if(payment > 30) finalpayment = payment*11.55-84;
                     else if(payment > 10) finalpayment = payment*9.45-21;
                     else finalpayment = payment*7.35;
-                    new AlertDialog.Builder(MainActivity.this)
+                    Intent result = new Intent(MainActivity.this, ResultActivity.class);
+                    result.putExtra("Final Payment", finalpayment);
+                    startActivity(result);
+                    /*new AlertDialog.Builder(MainActivity.this)
                             .setTitle("Water")
                             .setMessage("Final payment: " +finalpayment)
                             .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
@@ -76,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
                                 }
                             })
                             .show();
+
+                     */
                 }
             }
         });
