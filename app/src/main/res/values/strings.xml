@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">water</string>
+    <string name="monthly">Monthly</string>
+    <string name="everyothermonth">Every Other Month</string>
+    <string name="calculate">Calculate</string>
+    <string name="currentpayment">The current payment:</string>
+
+    <string name="reset">reset</string>
+    <string name="result">result</string>
+    <string name="ok">confirm</string>
 </resources>

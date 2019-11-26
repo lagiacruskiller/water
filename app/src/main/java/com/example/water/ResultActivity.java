@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 public class ResultActivity extends AppCompatActivity {
+    private static final String TAG = ResultActivity.class.getSimpleName();
     private EditText resultbox;
     private Button resetbtn;
     double payment;
@@ -19,9 +21,11 @@ public class ResultActivity extends AppCompatActivity {
         resultbox = findViewById(R.id.resultbox);
         resetbtn = findViewById(R.id.resetbtn);
         Bundle value = getIntent().getExtras();
+
         if(value!=null){
             payment = value.getDouble("Final Payment");
         }
+        Log.d(TAG,payment+"");
         resultbox.setText(String.format("%.2f", payment));
         resetbtn.setOnClickListener(new Button.OnClickListener(){
             @Override
